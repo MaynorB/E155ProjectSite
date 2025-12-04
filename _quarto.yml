@@ -5,15 +5,12 @@ website:
   title: "E155Project"
   navbar:
     left:
-      - href: index.qmd
+      - href: home.qmd
         text: Home
-      - about.qmd
-
 format:
   html:
     theme:
-      - cosmo
-      - brand
+      - darkly
     css: styles.css
     toc: true
 
