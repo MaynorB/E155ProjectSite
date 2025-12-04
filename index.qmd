@@ -2,7 +2,6 @@
 title: "E155 Project"
 about:
   template: jolla
-  image: images/be.png
   links:
     - icon: github
       text: Carlos' Github
@@ -15,3 +14,11 @@ about:
 
 We are Carlos and Maynor. For our E155 project, we decided to make an audio mixer. Using the MCU and FPGA, we were able to apply a high/low pass filter or speed/slow the song playing. 
 
+::: {#programmers layout-ncol=2}
+
+![Surus](be.png){#Maynor}
+
+![Hanno](goku.png){#Carlos}
+
+Famous Elephants
+:::
