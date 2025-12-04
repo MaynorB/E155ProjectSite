@@ -1,6 +1,8 @@
 ---
-title: "E155 Project"
+title: "Audio Mixer"
 ---
 
-This is a  website.
+We are Carlos and Maynor. For our E155 project, we decided to make an audio mixer. Using the MCU and FPGA, we were able to apply a high/low pass filter or speed/slow the song playing. 
 
+!["TEMP MAYNOR PHOTO"](images/be.png)
+!["TEMP CARLOS PHOTO"](images/goku.png)
