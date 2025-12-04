@@ -2,8 +2,8 @@
 title: "E155 Project"
 about:
   template: jolla
-  image: images/be.png
-  image: images/goku.png
+  image: be.png
+  image: goku.png
   
 ---
 
