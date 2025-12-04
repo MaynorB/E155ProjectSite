@@ -2,8 +2,14 @@
 title: "E155 Project"
 about:
   template: jolla
-  image: be.png
-  image: goku.png
+  image: images/be.png
+  links:
+    - icon: github
+      text: Carlos' Github
+      href: https://github.com/cojedadesilva
+    - icon: github
+      text: Maynor's Github
+      href: https://github.com/MaynorB
   
 ---
 
