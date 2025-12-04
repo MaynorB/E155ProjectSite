@@ -10,9 +10,7 @@ website:
 
 format:
   html:
-    theme:
-      - darkly
-      - brand
+    theme: darkly
     css: styles.css
     toc: true
 
