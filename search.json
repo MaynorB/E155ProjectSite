@@ -1,16 +1,9 @@
 [
   {
-    "objectID": "about.html",
-    "href": "about.html",
-    "title": "About",
-    "section": "",
-    "text": "About this site"
-  },
-  {
-    "objectID": "index.html",
-    "href": "index.html",
+    "objectID": "home.html",
+    "href": "home.html",
     "title": "E155 Project",
     "section": "",
-    "text": "We are Carlos and Maynor. For our E155 project, we decided to make an audio mixer. Using the MCU and FPGA, we were able to apply a high/low pass filter or speed/slow the song playing.\n\n\n\n\n\n\nSurus\n\n\n\n\n\n\n\nHanno\n\n\n\n\n\n\nFamous Elephants"
+    "text": "Maynor\n\n\n\n\n\n\n\nCarlos\n\n\n\n\n\nWe are Carlos and Maynor. For our E155 project, we decided to make an audio mixer. Using the MCU and FPGA, we were able to apply a high or low pass filter, plus either speed up or slow down the song playing. With a click of the joystick, you can also skip the current song playing to the next one, looping through 16 songs."
   }
 ]
