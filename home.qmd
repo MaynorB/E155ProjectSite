@@ -11,12 +11,6 @@ about:
       href: https://github.com/MaynorB
   
 ---
-::: {#programmers layout-ncol=2}
-
-![Maynor](images/be.png){#Maynor}
-
-![Carlos](images/goku.png){#Carlos}
-:::
 
 We are Carlos and Maynor. For our E155 project, we decided to make an audio mixer. Using the MCU and FPGA, we were able to apply a high or low pass filter, plus either speed up or slow down the song playing. With a click of the joystick, you can also skip the current song playing to the next one, looping through 16 songs.
 
