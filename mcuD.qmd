@@ -25,4 +25,3 @@ We decided to use TIM2, specifcally its intrrupt to communicate with the FPGA on
 # CENTERING AND CALIBRATION
 
 Another issue present is that the data was not neccesarry centered, meaning that values were off when being sent causing the playback speed at the origin to not match the desired 48kSamples/s. Another issue is that a joystick can't get max X and max y at the same time, so we added a 1.5 multiplier (sqrt(2)=1.41 is the minimum we would need for this). To correct this, we simply utilized a function made to clamp the max value read from the joystick on either axis, allowing us to monimize bugds.
-
