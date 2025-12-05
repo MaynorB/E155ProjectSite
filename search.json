@@ -1,5 +1,19 @@
 [
   {
+    "objectID": "bill.html",
+    "href": "bill.html",
+    "title": "Documentation Of our Project",
+    "section": "",
+    "text": "Below is a table of the parts we used.\n\n\n\nPart Name\nPart Number\nLink\n\n\n\n\nMicroSD Card Reader *\nAdafruit 254\nDigiKey\n\n\n16GB microSD Card *\nSanDisk SDSQUNC-016G-AN6MA\nSanDisk Store\n\n\nJoystick Module *\nSunFounder ST0001\nDigiKey\n\n\nNucleo-L432KC\nNUCLEO-L432KC\n\n\n\nUpduino FPGA Board\nUPDuino v3.1"
+  },
+  {
+    "objectID": "bill.html#parts-list",
+    "href": "bill.html#parts-list",
+    "title": "Documentation Of our Project",
+    "section": "",
+    "text": "Below is a table of the parts we used.\n\n\n\nPart Name\nPart Number\nLink\n\n\n\n\nMicroSD Card Reader *\nAdafruit 254\nDigiKey\n\n\n16GB microSD Card *\nSanDisk SDSQUNC-016G-AN6MA\nSanDisk Store\n\n\nJoystick Module *\nSunFounder ST0001\nDigiKey\n\n\nNucleo-L432KC\nNUCLEO-L432KC\n\n\n\nUpduino FPGA Board\nUPDuino v3.1"
+  },
+  {
     "objectID": "home.html",
     "href": "home.html",
     "title": "E155 Project",
