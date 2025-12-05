@@ -7,6 +7,8 @@ website:
     left:
       - href: home.qmd
         text: Home
+      - href: bill.qmd
+        text: Documentation
 
 format:
   html:

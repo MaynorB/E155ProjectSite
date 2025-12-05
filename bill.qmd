@@ -1,0 +1,18 @@
+---
+title: "Documentation Of our Project"
+about:
+    template: jolla
+---
+
+## Parts List
+Below is a table of the parts we used. 
+
+| Part Name        | Part Number | Link 
+|------------------|-------------|------
+| MicroSD Card Reader * | Adafruit 254 | [DigiKey](https://www.digikey.com/en/products/detailadafruit-industries-llc/254/5761230) 
+| 16GB microSD Card * | SanDisk SDSQUNC-016G-AN6MA | [SanDisk Store](https://shop.sandisk.com/products/memory-cards/microsd-cards/sandisk-ultra-uhs-i-microsd?sku=SDSQUNC-016G-AN6MA)
+| Joystick Module * | SunFounder ST0001 | [DigiKey](https://www.digikey.com/en/products/detail/sunfounder/ST0001/22116822)
+| Nucleo-L432KC | NUCLEO-L432KC 
+| Upduino FPGA Board | UPDuino v3.1 
+
+
