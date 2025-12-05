@@ -135,7 +135,15 @@ ul.task-list li input[type="checkbox"] {
   <li><a href="#filters" id="toc-filters" class="nav-link" data-scroll-target="#filters">FILTERS</a></li>
   <li><a href="#mixer" id="toc-mixer" class="nav-link" data-scroll-target="#mixer">MIXER</a></li>
   <li><a href="#playing" id="toc-playing" class="nav-link" data-scroll-target="#playing">PLAYING</a></li>
-  <li><a href="#testbenches" id="toc-testbenches" class="nav-link" data-scroll-target="#testbenches">TESTBENCHES</a></li>
+  <li><a href="#testbenches" id="toc-testbenches" class="nav-link" data-scroll-target="#testbenches">TESTBENCHES</a>
+  <ul class="collapse">
+  <li><a href="#audio-spi-receiver-audio-2-bytes-at-a-time" id="toc-audio-spi-receiver-audio-2-bytes-at-a-time" class="nav-link" data-scroll-target="#audio-spi-receiver-audio-2-bytes-at-a-time">Audio SPI receiver (audio 2 bytes at a time):</a></li>
+  <li><a href="#fifo" id="toc-fifo" class="nav-link" data-scroll-target="#fifo">FIFO:</a></li>
+  <li><a href="#synchronizer" id="toc-synchronizer" class="nav-link" data-scroll-target="#synchronizer">Synchronizer:</a></li>
+  <li><a href="#top-module" id="toc-top-module" class="nav-link" data-scroll-target="#top-module">Top module:</a></li>
+  <li><a href="#i2s-player" id="toc-i2s-player" class="nav-link" data-scroll-target="#i2s-player">I2S player:</a></li>
+  <li><a href="#fir-filter" id="toc-fir-filter" class="nav-link" data-scroll-target="#fir-filter">FIR Filter</a></li>
+  </ul></li>
   </ul>
 </nav>
     </div>
@@ -155,7 +163,7 @@ ul.task-list li input[type="checkbox"] {
 </section>
 <section id="filters" class="level1">
 <h1>FILTERS</h1>
-<p>This data then gets relayed to the FIR filter, which has an inbuilt RAM module to store 128 samples, then a moving average low pass filter is applied. Since an ideal FIR filter needs to “read the future”, we delay the “present” sample by 64 samples (64/48000Hz = 1.3ms) making it so the lowpass filter and this delayed unfiltered sample have no phase between them. After this we will go back to our second SPI block, which has a different chip enable to read the MCU potentiometer axis, specifically the vertical one that controls frequencies.</p>
+<p>This data then gets relayed to the FIR filter, which has an inbuilt RAM module to store 128 samples, then a moving average low pass filter is applied. Since an ideal FIR filter needs to “read the future”, we delay the “present” sample by 64 samples (64/48000Hz = 1.3ms) making it so the lowpass filter and this delayed unfiltered sample have no phase between them. After this we will go back to our second SPI block, which has a different chip enable to read the MCU potentiometer axis, specifically the vertical one that controls frequencies. <a href="#my-image">See the FIR Filter Testbench here!</a></p>
 </section>
 <section id="mixer" class="level1">
 <h1>MIXER</h1>
@@ -167,12 +175,47 @@ ul.task-list li input[type="checkbox"] {
 </section>
 <section id="testbenches" class="level1">
 <h1>TESTBENCHES</h1>
-<p>Audio SPI receiver (audio 2 bytes at a time): We can see we should get 1010-1010-1011-1011 = aabb, but it’s switched because of endianness (BYTE_SWAP = 1) <img src="images/testbench1.png" class="img-fluid" alt="Testbench 1"></p>
-<p>FIFO: We can see how 1111, 2222, 3333 are sent (2 byte samples matching audio sample length) and we can get them using a different timed clock (read enable is slower than write enable) so it works for our sampling purposes. <img src="images/testbench2.png" class="img-fluid" alt="Testbench 2"></p>
-<p>Synchronizer:Its in charge of reading the FIFO at the rate specified by the MCU audio playing rate pin (usually 48kHz, but can go to almost 90kHz) Here we can see how it makes the noisy data coming out of the FIFO (0000 sometimes) into a continuous stream of the desired values at the desired rate. <img src="images/testbench3.png" class="img-fluid" alt="Testbench 3"></p>
-<p>Top module: Anything after the filter will not have anything since it needs 128 samples to function. This will not get simulated like this (top module). Everything else seems to work, spi reads the values (raw value is in test_val, but we have byte swap) This test val is saved faster than the 48kHz clock, but we get the data out at 48kHz, which is expected. <img src="images/testbench4.png" class="img-fluid" alt="Testbench 4"></p>
-<p>I2S player: Given the following: <img src="images/testbench43.png" class="img-fluid" alt="Testbench 4.2"></p>
-<p>We can zoom in. We see that data changes during the falling edge of clk, which is an error that took me a while to find since I didn’t know this was necessary. Another common error was that we started sending data on the first bit when we are supposed to do it in the second bit. If we check the values (AKA 8000, 7FFF, etc…) we can see that it matches the binary representation and it has a push register way of happening.</p>
+<section id="audio-spi-receiver-audio-2-bytes-at-a-time" class="level3">
+<h3 data-anchor-id="audio-spi-receiver-audio-2-bytes-at-a-time">Audio SPI receiver (audio 2 bytes at a time):</h3>
+<p>We can see we should get 1010-1010-1011-1011 = aabb, but it’s switched because of endianness (BYTE_SWAP = 1) <img src="images/testbench1.png" class="img-fluid" alt="Testbench 1"></p>
+</section>
+<section id="fifo" class="level3">
+<h3 data-anchor-id="fifo">FIFO:</h3>
+<pre><code>We can see how 1111, 2222, 3333 are sent (2 byte samples matching audio sample length) and we can get them using a different timed clock (read enable is slower than write enable) so it works for our sampling purposes.</code></pre>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="images/testbench2.png" class="img-fluid figure-img"></p>
+<figcaption>Testbench 2</figcaption>
+</figure>
+</div>
+</section>
+<section id="synchronizer" class="level3">
+<h3 data-anchor-id="synchronizer">Synchronizer:</h3>
+<pre><code>Its in charge of reading the FIFO at the rate specified by the MCU audio playing rate pin (usually 48kHz, but can go to almost 90kHz) Here we can see how it makes the noisy data coming out of the FIFO (0000 sometimes) into a continuous stream of the desired values at the desired rate.</code></pre>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="images/testbench3.png" class="img-fluid figure-img"></p>
+<figcaption>Testbench 3</figcaption>
+</figure>
+</div>
+</section>
+<section id="top-module" class="level3">
+<h3 data-anchor-id="top-module">Top module:</h3>
+<pre><code>Anything after the filter will not have anything since it needs 128 samples to function. This will not get simulated like this (top module). Everything else seems to work, spi reads the values (raw value is in test_val, but we have byte swap) This test val is saved faster than the 48kHz clock, but we get the data out at 48kHz, which is expected. </code></pre>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="images/testbench4.png" class="img-fluid figure-img"></p>
+<figcaption>Testbench 4</figcaption>
+</figure>
+</div>
+</section>
+<section id="i2s-player" class="level3">
+<h3 data-anchor-id="i2s-player">I2S player:</h3>
+<pre><code>Given the following:</code></pre>
+<p><img src="images/testbench43.png" class="img-fluid" alt="Testbench 4.2"> We can zoom in. We see that data changes during the falling edge of clk, which is an error that took me a while to find since I didn’t know this was necessary. Another common error was that we started sending data on the first bit when we are supposed to do it in the second bit. If we check the values (AKA 8000, 7FFF, etc…) we can see that it matches the binary representation and it is similar to SPI where a clock tells the suystem when to save data. <img src="images/testbench45.png" class="img-fluid" alt="Testbench 4.5"></p>
+</section>
+<section id="fir-filter" class="level3">
+<h3 data-anchor-id="fir-filter">FIR Filter</h3>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
 <p><img src="images/testbench5.png" class="img-fluid figure-img"></p>
@@ -181,6 +224,7 @@ ul.task-list li input[type="checkbox"] {
 </div>
 
 
+</section>
 </section>
 </main>  
 </div>
