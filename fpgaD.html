@@ -163,7 +163,8 @@ ul.task-list li input[type="checkbox"] {
 </section>
 <section id="filters" class="level1">
 <h1>FILTERS</h1>
-<p>This data then gets relayed to the FIR filter, which has an inbuilt RAM module to store 128 samples, then a moving average low pass filter is applied. Since an ideal FIR filter needs to “read the future”, we delay the “present” sample by 64 samples (64/48000Hz = 1.3ms) making it so the lowpass filter and this delayed unfiltered sample have no phase between them. After this we will go back to our second SPI block, which has a different chip enable to read the MCU potentiometer axis, specifically the vertical one that controls frequencies. <a href="#fir-filter">See the FIR Filter Testbench here!</a></p>
+<p>This data then gets relayed to the FIR filter, which has an inbuilt RAM module to store 128 samples, then a moving average low pass filter is applied. Since an ideal FIR filter needs to “read the future”, we delay the “present” sample by 64 samples (64/48000Hz = 1.3ms) making it so the lowpass filter and this delayed unfiltered sample have no phase between them. After this we will go back to our second SPI block, which has a different chip enable to read the MCU potentiometer axis, specifically the vertical one that controls frequencies.</p>
+<p><a href="#fir-filter">See the FIR Filter Testbench here!</a></p>
 </section>
 <section id="mixer" class="level1">
 <h1>MIXER</h1>
