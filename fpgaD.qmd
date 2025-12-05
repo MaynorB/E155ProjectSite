@@ -4,8 +4,6 @@ about:
     template: jolla
 ---
 
-## FPGA DESIGN
-
 # RECIEVING DATA
 First, we will start describing the path data takes. The FPGA will read SPI data from the MCU, where it is being sent much faster than it is supposed to be played at. This is on purpose since the MCU also has to read the data and it has to do other actions like reading the DAC for the joystick values. This means we store all the data quickly in a FIFO and then the synchronizer reads it at the rate the MCU wants us to read at. The MCU produces a clock that rises every time we are supposed to play an audio sample, which in a 48kSamples/s design would mean it is 48kHz. 
 
