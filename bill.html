@@ -96,6 +96,14 @@ ul.task-list li input[type="checkbox"] {
     <a class="nav-link active" href="./bill.html" aria-current="page"> 
 <span class="menu-text">Documentation</span></a>
   </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="./mcuD.html"> 
+<span class="menu-text">MCU DESIGN</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="./fpgaD.html"> 
+<span class="menu-text">FPGA DESIGN</span></a>
+  </li>  
 </ul>
           </div> <!-- /navcollapse -->
             <div class="quarto-navbar-tools">
@@ -112,6 +120,8 @@ ul.task-list li input[type="checkbox"] {
     <h2 id="toc-title">On this page</h2>
   <ul>
   <li><a href="#parts-list" id="toc-parts-list" class="nav-link active" data-scroll-target="#parts-list">Parts List</a></li>
+  <li><a href="#schematic" id="toc-schematic" class="nav-link" data-scroll-target="#schematic">Schematic</a></li>
+  <li><a href="#fpga-diragrams" id="toc-fpga-diragrams" class="nav-link" data-scroll-target="#fpga-diragrams">FPGA Diragrams</a></li>
   </ul>
 </nav>
     </div>
@@ -127,43 +137,63 @@ ul.task-list li input[type="checkbox"] {
 
 <section id="parts-list" class="level2">
 <h2 data-anchor-id="parts-list">Parts List</h2>
-<p>Below is a table of the parts we used.</p>
+<p>Below is a table of the parts we used. Those with astricks are new hardware we used. While most of these are simple, specifcally the MicroSD reader and DAC module are new as we have not used either one of these. The MicroSD card introduces a new library while the DAC module brings a new type of logic that has been breifly covered.</p>
 <table class="caption-top table">
 <thead>
 <tr class="header">
 <th>Part Name</th>
-<th>Part Number</th>
+<th>Part Number / Model</th>
 <th>Link</th>
+<th>Notes</th>
 </tr>
 </thead>
 <tbody>
 <tr class="odd">
 <td>MicroSD Card Reader *</td>
 <td>Adafruit 254</td>
-<td><a href="https://www.digikey.com/en/products/detailadafruit-industries-llc/254/5761230">DigiKey</a></td>
+<td><a href="https://www.digikey.com/en/products/detail/adafruit-industries-llc/254/5761230">DigiKey</a></td>
+<td>Standard breakout board</td>
 </tr>
 <tr class="even">
 <td>16GB microSD Card *</td>
 <td>SanDisk SDSQUNC-016G-AN6MA</td>
 <td><a href="https://shop.sandisk.com/products/memory-cards/microsd-cards/sandisk-ultra-uhs-i-microsd?sku=SDSQUNC-016G-AN6MA">SanDisk Store</a></td>
+<td>Class 10 UHS-I</td>
 </tr>
 <tr class="odd">
 <td>Joystick Module *</td>
 <td>SunFounder ST0001</td>
 <td><a href="https://www.digikey.com/en/products/detail/sunfounder/ST0001/22116822">DigiKey</a></td>
+<td>XY analog joystick</td>
 </tr>
 <tr class="even">
-<td>Nucleo-L432KC</td>
-<td>NUCLEO-L432KC</td>
-<td></td>
+<td>DAC Module *</td>
+<td>Teyleten Robot PCM5102A DAC</td>
+<td><a href="https://www.amazon.com/Teyleten-Robot-GY-PCM5102-Converter-Raspberry/dp/B09C5QX228/ref=sr_1_1_sspa?crid=PL0VKTV5P1WE&amp;dib=eyJ2IjoiMSJ9.VuF0vby1G3PnkJn6Ja515HPAxINH647syBgyKoQG6MAFlR_Gi7DfzjFeFLO2WzgqD-DVpY4x8AppD55LWuZ4odP8BaHMePlG82FVknMM-Jqrlwa3AmpHU5xTKk1jilQCpDQZTMuVV7JFcFCazi0wnXaHp7L91bQQWLMUw7N7iqFFWlXz416l-fqOT89xvz6VPF6tpIbp6B2QMAivEnOn2jO3XIOrkzG0-kyoHy1_gCU.EeeWvOayxNToCgagxce5z-uqKgTwFWafcJaa7Tf1f7Q&amp;dib_tag=se&amp;keywords=PCM5102A&amp;qid=1760939036&amp;sprefix=pcm5102a%2Caps%2C379&amp;sr=8-1-spons&amp;sp_csd=d2lkZ2V0TmFtZT1zcF9hdGY&amp;psc=1">Amazon</a></td>
+<td>I2S DAC — for audio output from FPGA/MCU</td>
 </tr>
 <tr class="odd">
+<td>Nucleo-L432KC</td>
+<td>NUCLEO-L432KC</td>
+<td>(add link)</td>
+<td>Main MCU</td>
+</tr>
+<tr class="even">
 <td>Upduino FPGA Board</td>
 <td>UPDuino v3.1</td>
-<td></td>
+<td>(add link)</td>
+<td>ICE40UP5K FPGA board</td>
 </tr>
 </tbody>
 </table>
+</section>
+<section id="schematic" class="level2">
+<h2 data-anchor-id="schematic">Schematic</h2>
+<p>In the following diagram, it is our electircal schmeatic on how we wired up our hardware. Note that our joystick we have reversed ground and 3.3V due to the signal sending the joystickn click being wire to ground for an unknown reason. <img src="images/elec.png" class="img-fluid" alt="Schematic 1"></p>
+</section>
+<section id="fpga-diragrams" class="level2">
+<h2 data-anchor-id="fpga-diragrams">FPGA Diragrams</h2>
+<p>The following diagrams are associated with our FPGA. Diagram 1 showcases our block modules used in the FPGA itself. Diagram 2 is the generated diagram provided by Radiant. <img src="images/block.png" class="img-fluid" alt="Diagram 1"> <img src="images/rad.png" class="img-fluid" alt="Diagram 2"></p>
 
 
 </section>

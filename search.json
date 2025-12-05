@@ -4,20 +4,69 @@
     "href": "bill.html",
     "title": "Documentation Of our Project",
     "section": "",
-    "text": "Below is a table of the parts we used.\n\n\n\nPart Name\nPart Number\nLink\n\n\n\n\nMicroSD Card Reader *\nAdafruit 254\nDigiKey\n\n\n16GB microSD Card *\nSanDisk SDSQUNC-016G-AN6MA\nSanDisk Store\n\n\nJoystick Module *\nSunFounder ST0001\nDigiKey\n\n\nNucleo-L432KC\nNUCLEO-L432KC\n\n\n\nUpduino FPGA Board\nUPDuino v3.1"
+    "text": "Below is a table of the parts we used. Those with astricks are new hardware we used. While most of these are simple, specifcally the MicroSD reader and DAC module are new as we have not used either one of these. The MicroSD card introduces a new library while the DAC module brings a new type of logic that has been breifly covered.\n\n\n\nPart Name\nPart Number / Model\nLink\nNotes\n\n\n\n\nMicroSD Card Reader *\nAdafruit 254\nDigiKey\nStandard breakout board\n\n\n16GB microSD Card *\nSanDisk SDSQUNC-016G-AN6MA\nSanDisk Store\nClass 10 UHS-I\n\n\nJoystick Module *\nSunFounder ST0001\nDigiKey\nXY analog joystick\n\n\nDAC Module *\nTeyleten Robot PCM5102A DAC\nAmazon\nI2S DAC — for audio output from FPGA/MCU\n\n\nNucleo-L432KC\nNUCLEO-L432KC\n(add link)\nMain MCU\n\n\nUpduino FPGA Board\nUPDuino v3.1\n(add link)\nICE40UP5K FPGA board"
   },
   {
     "objectID": "bill.html#parts-list",
     "href": "bill.html#parts-list",
     "title": "Documentation Of our Project",
     "section": "",
-    "text": "Below is a table of the parts we used.\n\n\n\nPart Name\nPart Number\nLink\n\n\n\n\nMicroSD Card Reader *\nAdafruit 254\nDigiKey\n\n\n16GB microSD Card *\nSanDisk SDSQUNC-016G-AN6MA\nSanDisk Store\n\n\nJoystick Module *\nSunFounder ST0001\nDigiKey\n\n\nNucleo-L432KC\nNUCLEO-L432KC\n\n\n\nUpduino FPGA Board\nUPDuino v3.1"
+    "text": "Below is a table of the parts we used. Those with astricks are new hardware we used. While most of these are simple, specifcally the MicroSD reader and DAC module are new as we have not used either one of these. The MicroSD card introduces a new library while the DAC module brings a new type of logic that has been breifly covered.\n\n\n\nPart Name\nPart Number / Model\nLink\nNotes\n\n\n\n\nMicroSD Card Reader *\nAdafruit 254\nDigiKey\nStandard breakout board\n\n\n16GB microSD Card *\nSanDisk SDSQUNC-016G-AN6MA\nSanDisk Store\nClass 10 UHS-I\n\n\nJoystick Module *\nSunFounder ST0001\nDigiKey\nXY analog joystick\n\n\nDAC Module *\nTeyleten Robot PCM5102A DAC\nAmazon\nI2S DAC — for audio output from FPGA/MCU\n\n\nNucleo-L432KC\nNUCLEO-L432KC\n(add link)\nMain MCU\n\n\nUpduino FPGA Board\nUPDuino v3.1\n(add link)\nICE40UP5K FPGA board"
+  },
+  {
+    "objectID": "bill.html#schematic",
+    "href": "bill.html#schematic",
+    "title": "Documentation Of our Project",
+    "section": "Schematic",
+    "text": "Schematic\nIn the following diagram, it is our electircal schmeatic on how we wired up our hardware. Note that our joystick we have reversed ground and 3.3V due to the signal sending the joystickn click being wire to ground for an unknown reason."
+  },
+  {
+    "objectID": "bill.html#fpga-diragrams",
+    "href": "bill.html#fpga-diragrams",
+    "title": "Documentation Of our Project",
+    "section": "FPGA Diragrams",
+    "text": "FPGA Diragrams\nThe following diagrams are associated with our FPGA. Diagram 1 showcases our block modules used in the FPGA itself. Diagram 2 is the generated diagram provided by Radiant."
   },
   {
     "objectID": "index.html",
     "href": "index.html",
     "title": "E155 Project",
     "section": "",
-    "text": "We are Carlos and Maynor. For our E155 project, we decided to make an audio mixer. Using the MCU and FPGA, we were able to apply a high or low pass filter, plus either speed up or slow down the song playing. With a click of the joystick, you can also skip the current song playing to the next one, looping through 16 songs."
+    "text": "We are Carlos and Maynor, both Junior Mudders. For our E155 project, we decided to make an audio mixer. Using the MCU and FPGA, we were able to apply a high or low pass filter, plus either speed up or slow down the song playing. With a click of the joystick, you can also skip the current song playing to the next one, looping through 16 songs."
+  },
+  {
+    "objectID": "mcuD.html",
+    "href": "mcuD.html",
+    "title": "MCU DESIGN",
+    "section": "",
+    "text": "We designed the MCU to be the brains of grabbing data from the SD card. Besides reading the SD card, it also reads X and Y axis values and click from the Joystick."
+  },
+  {
+    "objectID": "mcuD.html#mcu-design",
+    "href": "mcuD.html#mcu-design",
+    "title": "MCU DESIGN",
+    "section": "",
+    "text": "We designed the MCU to be the brains of grabbing data from the SD card. Besides reading the SD card, it also reads X and Y axis values and click from the Joystick."
+  },
+  {
+    "objectID": "mcuD.html#reading-wav",
+    "href": "mcuD.html#reading-wav",
+    "title": "MCU DESIGN",
+    "section": "Reading WAV",
+    "text": "Reading WAV\nIn order to read the .wav file, we utilize a pre-made library titled FATFS. This easily allowed us to utilize premade function to read the microSD. However, it is not a high level, rather as a mediator for us to use. To put it simply, we still had to write a few functions to properly read the microSD card. Once we were past this, we decided to utilze SPI1 to communicate with the microSD reader. When recieving data, we made a 512 byte buffer to read in chunks. The reason with this is 512 bytes is the most common size used in MicroSDs when it comes to reading sectors. This allows us to properlu extract sectors without missing data."
+  },
+  {
+    "objectID": "mcuD.html#reading-joystick",
+    "href": "mcuD.html#reading-joystick",
+    "title": "MCU DESIGN",
+    "section": "Reading Joystick",
+    "text": "Reading Joystick\nThe Joystick is staightforward. We decided to use an onboard Anolog Digital Connverter. This would make it easier to send this data to the FPGA, and allow for easy debugging in case something goes wrong with filters. With the click, we simply used a GPIO input."
+  },
+  {
+    "objectID": "mcuD.html#sending-data-to-fpga",
+    "href": "mcuD.html#sending-data-to-fpga",
+    "title": "MCU DESIGN",
+    "section": "Sending Data to FPGA",
+    "text": "Sending Data to FPGA\nTo send these data, we have a second SPI intialized to send the buffer and joystick data. However, we ran into the problem on how the data is being sent, as it would be difficult for the FPGA to tell when it has recieved wav or joystick data."
   }
 ]
