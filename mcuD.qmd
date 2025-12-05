@@ -1,0 +1,30 @@
+---
+title: "MCU DESIGN"
+about:
+    template: jolla
+---
+
+## MCU DESIGN
+
+We designed the MCU to be the brains of grabbing data from the SD card. Besides reading the SD card, it also reads X and Y axis values and  click from the Joystick.
+
+## Reading WAV
+
+In order to read the .wav file, we utilize a pre-made library titled FATFS. This easily allowed us to utilize premade function to read the microSD. However, it is not a high level, rather as a mediator for us to use. To put it simply, we still had to write a few functions to properly read the microSD card. Once we were past this, we decided to utilze SPI1 to communicate with the microSD reader. When recieving data, we made a 512 byte buffer to read in chunks. The reason with this is 512 bytes is the most common size used in MicroSDs when it comes to reading sectors. This allows us to properlu extract sectors without missing data. 
+
+## Reading Joystick
+
+The Joystick is staightforward. We decided to use an onboard Anolog Digital Connverter. This would make it easier to send this data to the FPGA, and allow for easy debugging in case something goes wrong with filters. With the click, we simply used a GPIO input. 
+
+## Sending Data to FPGA
+
+To send these data, we have a second SPI intialized to send the buffer and joystick data. However, we ran into the problem on how the data is being sent, as it would be difficult for the FPGA to tell when it has recieved wav or joystick data. 
+
+# TIM2
+
+We decided to use TIM2, specifcally its intrrupt to communicate with the FPGA on when the joystick data is being sent. 
+
+# CENTERING
+
+Another issue present is that the data was not neccesarry center, meaning that values were off when being sent causing corrupt data to be read. To correct this, we simply utilized a function made to clamp the max value read from the joystick on either axis, allowing us to monimize bugds.
+

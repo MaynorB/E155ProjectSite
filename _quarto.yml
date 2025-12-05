@@ -9,6 +9,11 @@ website:
         text: Home
       - href: bill.qmd
         text: Documentation
+      - href: mcuD.qmd
+        text: MCU DESIGN
+      - href: fpgaD.qmd
+        text: FPGA DESIGN
+      
 
 format:
   html:
