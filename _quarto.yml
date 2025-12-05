@@ -8,11 +8,17 @@ website:
       - href: index.qmd
         text: Home
       - href: bill.qmd
-        text: Documentation
+        text: DOCUMENTATION
       - href: mcuD.qmd
         text: MCU DESIGN
       - href: fpgaD.qmd
         text: FPGA DESIGN
+      - href: results.qmd
+        text: RESULTS
+      - href: ai.qmd
+        text: AI USE
+      - href: reference.qmd
+        text: ACK/REF
       
 
 format:

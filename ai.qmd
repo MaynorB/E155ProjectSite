@@ -1,0 +1,8 @@
+---
+title: "Useage of AI"
+about:
+    template: jolla
+---
+
+An aspect of this project was that we had permission to utilize AI for help. We used both Gemini and ChatGPT for aid. Specifcally, it aided in helping utilize the FATFS library, helping debug it to make sure we were reading the data correctly. They were helpful in helping clear out ideas as well, making sure we were going in the general direction we wanted. 
+
