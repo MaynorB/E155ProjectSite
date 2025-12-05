@@ -136,7 +136,7 @@ ul.task-list li input[type="checkbox"] {
   <li><a href="#reading-joystick" id="toc-reading-joystick" class="nav-link" data-scroll-target="#reading-joystick">Reading Joystick</a></li>
   <li><a href="#sending-data-to-fpga" id="toc-sending-data-to-fpga" class="nav-link" data-scroll-target="#sending-data-to-fpga">Sending Data to FPGA</a></li>
   <li><a href="#tim2" id="toc-tim2" class="nav-link" data-scroll-target="#tim2">TIM2</a></li>
-  <li><a href="#centering" id="toc-centering" class="nav-link" data-scroll-target="#centering">CENTERING</a></li>
+  <li><a href="#centering-and-calibration" id="toc-centering-and-calibration" class="nav-link" data-scroll-target="#centering-and-calibration">CENTERING AND CALIBRATION</a></li>
   </ul>
 </nav>
     </div>
@@ -152,27 +152,27 @@ ul.task-list li input[type="checkbox"] {
 
 <section id="mcu-design" class="level2">
 <h2 data-anchor-id="mcu-design">MCU DESIGN</h2>
-<p>We designed the MCU to be the brains of grabbing data from the SD card. Besides reading the SD card, it also reads X and Y axis values and click from the Joystick.</p>
+<p>We designed the MCU to be the brains of grabbing data from the SD card. Besides reading the SD card, it also reads X and Y axis values and a click from the Joystick.</p>
 </section>
 <section id="reading-wav" class="level2">
 <h2 data-anchor-id="reading-wav">Reading WAV</h2>
-<p>In order to read the .wav file, we utilize a pre-made library titled FATFS. This easily allowed us to utilize premade function to read the microSD. However, it is not a high level, rather as a mediator for us to use. To put it simply, we still had to write a few functions to properly read the microSD card. Once we were past this, we decided to utilze SPI1 to communicate with the microSD reader. When recieving data, we made a 512 byte buffer to read in chunks. The reason with this is 512 bytes is the most common size used in MicroSDs when it comes to reading sectors. This allows us to properlu extract sectors without missing data.</p>
+<p>In order to read the .wav file, we utilize a pre-made library titled FATFS. This easily allowed us to utilize premade function to read the microSD. However, it is not a high level, rather as a mediator for us to use. To put it simply, we still had to write a few functions to properly read the microSD card. Once we were past this, we decided to utilze SPI1 to communicate with the microSD reader. When recieving data, we made a 512 byte buffer to read in chunks. The reason with this is 512 bytes is the smallest size used in MicroSDs when it comes to reading sectors. This allows us to properly extract sectors without missing data and having a faster refresh rate for ADC data.</p>
 </section>
 <section id="reading-joystick" class="level2">
 <h2 data-anchor-id="reading-joystick">Reading Joystick</h2>
-<p>The Joystick is staightforward. We decided to use an onboard Anolog Digital Connverter. This would make it easier to send this data to the FPGA, and allow for easy debugging in case something goes wrong with filters. With the click, we simply used a GPIO input.</p>
+<p>The Joystick is staightforward. We decided to use an onboard Anolog Digital Connverter as our new feature in the MCU. This would make it easier to send this data to the FPGA, and allow easy value calibration that would be harder to do using system verilog. With the click, we simply used a GPIO input.</p>
 </section>
 <section id="sending-data-to-fpga" class="level2">
 <h2 data-anchor-id="sending-data-to-fpga">Sending Data to FPGA</h2>
-<p>To send these data, we have a second SPI intialized to send the buffer and joystick data. However, we ran into the problem on how the data is being sent, as it would be difficult for the FPGA to tell when it has recieved wav or joystick data.</p>
+<p>To send these data, we have a second SPI intialized to send the buffer and joystick data. However, we ran into the problem on how the data is being sent, as it would be difficult for the FPGA to tell when it has recieved wav or joystick data. This made us use 2 different chip selects, where one controls the Audio receiving and the other controls ADC data.</p>
 </section>
 <section id="tim2" class="level1">
 <h1>TIM2</h1>
-<p>We decided to use TIM2, specifcally its intrrupt to communicate with the FPGA on when the joystick data is being sent.</p>
+<p>We decided to use TIM2, specifcally its intrrupt to communicate with the FPGA on when the joystick data is being sent. We used a PCM value of 0 since it allows for more frequencies to be made. TIM2 controls all the dataflow of both the MCU and FPGA, where it will trigger at twice the sampling frequency to ensure we can also send a wave at the sampling frequency. We count 512 clock cycles since this corresponds to 256 samples being played, then we read and relay the SD card data, and finally we send DAC values.</p>
 </section>
-<section id="centering" class="level1">
-<h1>CENTERING</h1>
-<p>Another issue present is that the data was not neccesarry center, meaning that values were off when being sent causing corrupt data to be read. To correct this, we simply utilized a function made to clamp the max value read from the joystick on either axis, allowing us to monimize bugds.</p>
+<section id="centering-and-calibration" class="level1">
+<h1>CENTERING AND CALIBRATION</h1>
+<p>Another issue present is that the data was not neccesarry centered, meaning that values were off when being sent causing the playback speed at the origin to not match the desired 48kSamples/s. Another issue is that a joystick can’t get max X and max y at the same time, so we added a 1.5 multiplier (sqrt(2)=1.41 is the minimum we would need for this). To correct this, we simply utilized a function made to clamp the max value read from the joystick on either axis, allowing us to monimize bugds.</p>
 
 
 </section>
