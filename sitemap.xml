@@ -1,19 +1,31 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
-    <loc>https://MaynorB.github.io/E155ProjectSite/bill.html</loc>
-    <lastmod>2025-12-05T08:01:35.370Z</lastmod>
+    <loc>https://MaynorB.github.io/E155ProjectSite/ai.html</loc>
+    <lastmod>2025-12-05T09:25:55.935Z</lastmod>
   </url>
   <url>
-    <loc>https://MaynorB.github.io/E155ProjectSite/index.html</loc>
-    <lastmod>2025-12-05T06:14:00.128Z</lastmod>
+    <loc>https://MaynorB.github.io/E155ProjectSite/fpgaD.html</loc>
+    <lastmod>2025-12-05T07:59:45.405Z</lastmod>
+  </url>
+  <url>
+    <loc>https://MaynorB.github.io/E155ProjectSite/results.html</loc>
+    <lastmod>2025-12-05T09:26:13.255Z</lastmod>
   </url>
   <url>
     <loc>https://MaynorB.github.io/E155ProjectSite/mcuD.html</loc>
     <lastmod>2025-12-05T07:59:33.154Z</lastmod>
   </url>
   <url>
-    <loc>https://MaynorB.github.io/E155ProjectSite/fpgaD.html</loc>
-    <lastmod>2025-12-05T07:59:45.405Z</lastmod>
+    <loc>https://MaynorB.github.io/E155ProjectSite/reference.html</loc>
+    <lastmod>2025-12-05T08:51:50.963Z</lastmod>
+  </url>
+  <url>
+    <loc>https://MaynorB.github.io/E155ProjectSite/index.html</loc>
+    <lastmod>2025-12-05T06:14:00.128Z</lastmod>
+  </url>
+  <url>
+    <loc>https://MaynorB.github.io/E155ProjectSite/bill.html</loc>
+    <lastmod>2025-12-05T08:01:35.370Z</lastmod>
   </url>
 </urlset>
