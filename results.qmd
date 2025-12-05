@@ -3,3 +3,5 @@ title: "RESULTS DESIGN"
 about:
     template: jolla
 ---
+
+After working in this project for over a hundred hours, we were able to get continuous playback out of the SD card while being able to skip forward to the next song, adjust the filter and speed, and be user friendly. 

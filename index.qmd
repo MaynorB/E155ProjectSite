@@ -9,8 +9,11 @@ about:
     - icon: github
       text: Maynor's Github
       href: https://github.com/MaynorB
+    - icon: github
+      text: PROJECT CODE
+      href: https://github.com/MaynorB/E155ProjectCode
   
 ---
 
-We are Carlos and Maynor, both Junior Mudders. For our E155 project, we decided to make an audio mixer. Using the MCU and FPGA, we were able to apply a high or low pass filter, plus either speed up or slow down the song playing. With a click of the joystick, you can also skip the current song playing to the next one, looping through 16 songs.
+We are Carlos and Maynor, both Junior Mudders. For our E155 project, we decided to make a portable DJ set. Using the MCU and FPGA, we were able to apply a high or low pass filter, plus either speed up or slow down the song playing. With a click of the joystick, you can also skip the current song playing to the next one, looping through 16 songs.
 
