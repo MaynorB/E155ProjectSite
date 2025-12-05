@@ -9,6 +9,7 @@ First, we will start describing the path data takes. The FPGA will read SPI data
 
 # FILTERS
 This data then gets relayed to the FIR filter, which has an inbuilt RAM module to store 128 samples, then a moving average low pass filter is applied. Since an ideal FIR filter needs to "read the future", we delay the "present" sample by 64 samples (64/48000Hz = 1.3ms) making it so the lowpass filter and this delayed unfiltered sample have no phase between them. After this we will go back to our second SPI block, which has a different chip enable to read the MCU potentiometer axis, specifically the vertical one that controls frequencies. 
+
 [See the FIR Filter Testbench here!](#fir-filter)
 
 # MIXER
